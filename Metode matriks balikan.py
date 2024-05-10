@@ -1,28 +1,22 @@
+import unittest
 import numpy as np
 
-def inverse_matrix_method(A, b):
-    # Kode pengecekan apakah matriks A memiliki invers
-    if np.linalg.det(A) == 0:
-        raise ValueError("Matriks koefisien tidak memiliki invers.")
-    
-    # Kode untuk menghitung invers dari matriks A
+def inverse_matrix_method(A, B):
     A_inv = np.linalg.inv(A)
-    
-    # Kode untuk mencari solusi x dengan menggunakan invers matriks A
-    x = np.dot(A_inv, b)
-    
-    return x
+    X = np.dot(A_inv, B)
+    return X
 
-# Kode testing
-if __name__ == "__main__":
-    # Contoh soal
-    A = np.array([[2, 1], [1, -1]])
-    b = np.array([[4], [1]])
+class TestInverseMatrixMethod(unittest.TestCase):
+    def test_solution(self):
+        A = np.array([[2, 1],
+                      [3, -2]])
+        B = np.array([[5],
+                      [7]])
+        expected_solution = np.array([[1.],
+                                      [2.]])
+        
+        actual_solution = inverse_matrix_method(A, B)
+        np.testing.assert_array_almost_equal(actual_solution, expected_solution)
 
-    # Solusi
-    try:
-        x = inverse_matrix_method(A, b)
-        print("Solusi x:")
-        print(x)
-    except ValueError as e:
-        print(e)
+if __name__ == '__main__':
+    unittest.main()
