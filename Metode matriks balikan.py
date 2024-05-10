@@ -1,11 +1,13 @@
 import unittest
 import numpy as np
 
+#kode sumber
 def inverse_matrix_method(A, B):
     A_inv = np.linalg.inv(A)
     X = np.dot(A_inv, B)
     return X
-
+    
+#kode testing
 class TestInverseMatrixMethod(unittest.TestCase):
     def test_solution(self):
         A = np.array([[2, 1],
